@@ -344,6 +344,28 @@ SOMPOケアが運営する介護施設において、利用者の健康状態、
 FoundryのAIP（AI Platform）環境下では、AIは「生の雑多なデータ」ではなく、「名詞（オブジェクト）」と「動詞（アクション）」として厳密に定義・構造化されたオントロジーを読み込みます。<br>
 AIは「定義されたアクション」の範囲内でしか推論・提案を行えないため、コンテキスト汚染やハルシネーションを極限まで排除し、安全に現実世界のアクションを実行できるようになります。<br>
 
+```mermaid
+flowchart TD
+    subgraph standard_ai ["従来のAI活用（リスクと限界）"]
+        A1[("生のサイロ化データ")] -->|"直接アクセス・検索"| B1(("汎用LLM"))
+        B1 -.->|"コンテキストの欠如"| C1["ハルシネーション・誤った推論"]
+        C1 -.->|"システムへの直接書き込み不可"| D1(("手作業への依存・スケールしない"))
+    end
+
+    subgraph palantir_aip ["Palantir AIP + Ontology（安全と拡張）"]
+        A2[("各種データソース")] -->|"インデックス化"| B2{"オントロジー・名詞と動詞の定義"}
+        B2 -->|"権限と構造化データを提供"| C2(("AIP上のLLM"))
+        C2 -->|"定義された範囲内でのみ推論"| D2["アクション提案・Proposal"]
+        D2 -->|"人間のレビュー・承認"| E2(("安全な業務の実行・システムへ即時反映"))
+    end
+
+    %% 縦並びを強制するための透明なリンク
+    D1 ~~~ A2
+
+    style C1 fill:#fcc,stroke:#f33,stroke-width:2px
+    style E2 fill:#cfc,stroke:#393,stroke-width:2px
+```
+
 #### 6-2. AIエージェント（AI FDE）による運用構築コストの消滅
 
 さらにPalantirは、AIを単なる「ユーザーの補助ツール」から、「システムを自ら構築するエンジニア（AI FDE）」へと昇華させました。<br>
@@ -376,6 +398,29 @@ AIがどれほど賢くなっても、企業が持つデータが「サイロ化
 
 オントロジー駆動型アーキテクチャの構築は、壮大に見えても一歩ずつ確実に進めることができます。<br>
 公式資料に基づく学習・実装ロードマップとして、以下の段階的アプローチを推奨します。<br>
+
+```mermaid
+flowchart LR
+    Start(("サイロ化された<br>過去のIT資産")) --> S1
+    
+    subgraph Roadmap ["オントロジー実装の5ステップ"]
+        direction LR
+        S1["1. 基盤構造と<br>権限の理解"] --> S2["2. ミニマム・<br>モデリング"]
+        S2 --> S3["3. データ<br>インデックス化"]
+        S3 --> S4["4. 監査と<br>ガバナンス設計"]
+        S4 --> S5["5. AI/アプリ<br>への統合"]
+    end
+    
+    S5 --> Goal(("ビジネスを駆動する<br>生きたエンジン"))
+
+    style Start fill:#eee,stroke:#999
+    style Goal fill:#bfdbfe,stroke:#2563eb,stroke-width:3px
+    style S1 fill:#fff,stroke:#666
+    style S2 fill:#fff,stroke:#666
+    style S3 fill:#fff,stroke:#666
+    style S4 fill:#fff,stroke:#666
+    style S5 fill:#fff,stroke:#666
+```
 
 1. **基盤構造と権限モデルの理解（Month 1）** まずは、OMS / OSS / Funnel / Actions / Object databasesといったバックエンドコンポーネントの役割を理解します。同時に、RVs（制限付きビュー）やontology rolesといったPalantir独自の権限モデルを学び、ガバナンスの基礎を固めます。
   
