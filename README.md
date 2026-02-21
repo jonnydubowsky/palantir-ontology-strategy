@@ -32,7 +32,7 @@
 
 本書は、以下のリンクから一気に読み進めることができます。
 
-👉 **[書籍の全文を読む（the-palantir-impact.md）](docs/the-palantir-impact_jp.md)**
+👉 **[書籍の全文を読む（the-palantir-impact_jp.md）](docs/the-palantir-impact_jp.md)**
 
 ### 目次 (Table of Contents)
 * **Part I: The Problem and the Paradigm（課題とパラダイムシフト）**
