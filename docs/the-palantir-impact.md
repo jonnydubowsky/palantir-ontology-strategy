@@ -17,7 +17,7 @@
 その根本原因は、私たちがこれまでデータを「分析するための静的なスナップショット（見るためだけのデータ）」としてしか扱ってこなかったことにあります。<br>
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[業務システム群: ERP / CRM] -->|夜間バッチ等で抽出| B(データレイク / DWH)
     B --> C{BIツール / AIモデル}
     C -.->|人間が画面を見て判断| D((現場の担当者))
@@ -37,7 +37,7 @@ flowchart TD
 Foundry公式のバックエンド解説は、Foundryオントロジーを「組織のための運用レイヤー」と位置づけ、データセット等のデジタル資産を現実世界の資産・概念に結び付け、「デジタルツインとして機能」すると説明しています。<br>
 
 ```mermaid
-flowchart TD
+flowchart LR
     A2[各種データソース] -->|インデックス化| B2{オントロジー / 運用レイヤー}
     B2 -->|名詞と動詞を活用| C2[意思決定アプリ・AIモデル]
     C2 -->|人間の判断・自動化| D2((業務アクション))
@@ -181,7 +181,7 @@ Foundryの公式バックエンド解説では、アーキテクチャ面にお�
 - **Funnel (Object Data Funnel):** データソースとユーザー編集を読み取り、オブジェクトDBへインデックス化する役割を持っています 。
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph backend ["Foundry オントロジー・バックエンド"]
         F["Funnel<br>(データの読み取り・インデックス化)"]
         OMS["OMS<br>(メタデータとスキーマの定義)"]
@@ -241,6 +241,7 @@ Palantirは、ソフトウェアエンジニアリングにおいて歴史的に
 
 ```mermaid
 stateDiagram-v2
+    direction LR
     [*] --> 作業ブランチ作成: 現実の運用要件が変化
     作業ブランチ作成 --> スキーマ変更_テスト: Ontology上で変更
     スキーマ変更_テスト --> Proposal提出: レビュー依頼
@@ -345,24 +346,24 @@ FoundryのAIP（AI Platform）環境下では、AIは「生の雑多なデータ
 AIは「定義されたアクション」の範囲内でしか推論・提案を行えないため、コンテキスト汚染やハルシネーションを極限まで排除し、安全に現実世界のアクションを実行できるようになります。<br>
 
 ```mermaid
-flowchart TD
-    subgraph standard_ai ["従来のAI活用（リスクと限界）"]
+flowchart LR
+    subgraph standard_ai ["従来のAI活用<br>（リスクと限界）"]
+        direction LR
         A1[("生のサイロ化データ")] -->|"直接アクセス・検索"| B1(("汎用LLM"))
         B1 -.->|"コンテキストの欠如"| C1["ハルシネーション・誤った推論"]
         C1 -.->|"システムへの直接書き込み不可"| D1(("手作業への依存・スケールしない"))
     end
-
-    subgraph palantir_aip ["Palantir AIP + Ontology（安全と拡張）"]
+    style C1 fill:#fcc,stroke:#f33,stroke-width:2px
+```
+```mermaid
+flowchart LR
+    subgraph palantir_aip ["Palantir AIP + Ontology<br>（安全と拡張）"]
+        direction LR
         A2[("各種データソース")] -->|"インデックス化"| B2{"オントロジー・名詞と動詞の定義"}
         B2 -->|"権限と構造化データを提供"| C2(("AIP上のLLM"))
         C2 -->|"定義された範囲内でのみ推論"| D2["アクション提案・Proposal"]
         D2 -->|"人間のレビュー・承認"| E2(("安全な業務の実行・システムへ即時反映"))
     end
-
-    %% 縦並びを強制するための透明なリンク
-    D1 ~~~ A2
-
-    style C1 fill:#fcc,stroke:#f33,stroke-width:2px
     style E2 fill:#cfc,stroke:#393,stroke-width:2px
 ```
 
@@ -403,7 +404,7 @@ AIがどれほど賢くなっても、企業が持つデータが「サイロ化
 flowchart LR
     Start(("サイロ化された<br>過去のIT資産")) --> S1
     
-    subgraph Roadmap ["オントロジー実装の5ステップ"]
+    subgraph Roadmap ["オントロジー実装STEP"]
         direction LR
         S1["1. 基盤構造と<br>権限の理解"] --> S2["2. ミニマム・<br>モデリング"]
         S2 --> S3["3. データ<br>インデックス化"]
@@ -414,7 +415,7 @@ flowchart LR
     S5 --> Goal(("ビジネスを駆動する<br>生きたエンジン"))
 
     style Start fill:#eee,stroke:#999
-    style Goal fill:#bfdbfe,stroke:#2563eb,stroke-width:3px
+    style Goal fill:#bfdbfe,stroke:#2563eb,stroke-width:4px
     style S1 fill:#fff,stroke:#666
     style S2 fill:#fff,stroke:#666
     style S3 fill:#fff,stroke:#666
