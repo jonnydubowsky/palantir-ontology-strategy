@@ -437,3 +437,32 @@ flowchart LR
 データは、それを活用する人々の意思と繋がり、現実のアクションへと変換されたとき、初めて社会に「衝撃（インパクト）」をもたらします。<br>
 分析結果を眺めるだけの過去のIT資産から脱却し、オントロジーという新たな羅針盤を手に、あなたの組織のデータを「死んだ記録」から「ビジネスを駆動する生きたエンジン」へと変革してください。<br>
 
+---
+
+## 参考文献・引用元一覧 (References) - 日本語版
+
+本書の執筆にあたり、以下の学術的定義、公式技術仕様、および公開実績を参照しています。
+
+### 1. 学術論文（オントロジーの定義）
+- **Gruber, T. R. (1993). "A translation approach to portable ontology specifications."**<>
+  - URL: https://link.springer.com/article/10.1007/BF00993851
+- **Studer, R., Benjamins, V. R., & Fensel, D. (1998). "Knowledge engineering: Principles and methods."**
+  - URL: [https://doi.org/10.1016/S0169-023X(97)00039-6](https://www.google.com/search?q=https://doi.org/10.1016/S0169-023X(97)00039-6)
+
+### 2. Palantir 公式ドキュメント・製品仕様
+- **Palantir Foundry: Ontology Overview**
+  - URL: [Overview • Ontology • Palantir](https://www.palantir.com/docs/foundry/ontology/overview/)
+- **AIP (Artificial Intelligence Platform) Official Page**
+  - URL: [Palantir Artificial Intelligence Platform](https://www.palantir.com/platforms/aip/)
+- **Foundry Governance & Security Concepts**
+  - URL: [https://www.palantir.com/docs/foundry/administration/security-concepts/](https://www.google.com/search?q=https://www.palantir.com/docs/foundry/administration/security-concepts/)
+
+### 3. 公開事例・プレスリリース
+- **Airbus: Accelerating production with Palantir Foundry**
+  - URL: [Impact | Airbus and Skywise](https://www.palantir.com/impact/airbus/)
+- **SOMPO × Palantir: Real Data Platform (RDP) Case Study**
+  - URL: [https://www.palantir.com/impact/sompo-holdings/](https://www.google.com/search?q=https://www.palantir.com/impact/sompo-holdings/)
+- **Fujitsu and Palantir Expand Global Partnership (Dec 2023)**
+  - URL: [https://pr.fujitsu.com/jp/news/2023/12/12.html](https://www.google.com/search?q=https://pr.fujitsu.com/jp/news/2023/12/12.html)
+
+---
