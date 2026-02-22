@@ -1,4 +1,4 @@
-# パランティアの衝撃：データとAIを繋ぐ「オントロジー」戦略 🌐
+# The Palantir Impact: Ontology Strategy Connecting Data and AI 🌐
 **The Palantir Impact: Ontology Strategy Connecting Data and AI**
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
@@ -6,46 +6,46 @@
 
 *Read this in other languages: [English](README_en.md)*
 
-> 「データはもはや過去の記録ではない。現実世界を駆動するエンジンである」
+> "Data is no longer a record of the past. It is the engine that drives the real world."
 
-本書は、世界最強のデータプラットフォーム「Palantir（パランティア）」の中核概念である『オントロジー』を、単なるIT技術としてではなく、
-「組織の意思決定とAIの未来を形作る運用基盤」として解き明かすオープンソースの書籍プロジェクトです。
+This is an open-source book project that decodes the core concept of "Ontology" — the heart of Palantir, the world's most powerful data platform — not merely as an IT technology, but as
+"the operational foundation that shapes organizational decision-making and the future of AI."
 
-エンジニアリングの最前線と、ビジネス・経営の哲学の間にある深い溝を埋めるため、一次資料に基づくファクトとアーキテクチャの構造を体系化しました。
-
----
-
-## 🏛️ Core Tenets（オントロジーを貫く3つの哲学）
-
-従来のデータ基盤（データレイクやDWH）が「見るための死んだデータの沼」に陥る中、Palantirが提示するパラダイムシフトは以下の原則に基づいています。
-
-1. **The Operational Layer（運用レイヤーとしてのデータ）**
-   データは分析の果てに人間が手作業で現実を動かすためのものではありません。オントロジーは、システム上に現実のビジネスを再現する「デジタルツイン」であり、データそのものが直接ビジネスを駆動するレイヤーとなります。
-2. **Convergence of Noun and Verb（名詞と動詞の統合）**
-   システムを「オブジェクト（名詞）」と「アクション（動詞）」の統合として捉えます。顧客や部品といった状態（セマンティクス）だけでなく、発注やステータス変更といった運動的要素（キネティクス）を一つのモデルに内包します。
-3. **Governance of Reality（現実世界のバージョン管理）**
-   現実の運用を書き換えるという強大な力には、絶対的な統制が必要です。AIが自律的に提案を行う時代においても、オントロジーは「ブランチ（分岐）」と「レビュー」を通じて、圧倒的なスピードとガバナンスを両立させます。
+To bridge the deep gap between the cutting edge of engineering and the philosophy of business and management, this book systematizes facts and architectural structures based on primary sources.
 
 ---
 
-## 📖 本文を読む (Read the Book)
+## 🏛️ Core Tenets (Three Philosophies Underlying the Ontology)
 
-本書は、以下のリンクから一気に読み進めることができます。
+While conventional data infrastructure (data lakes and DWHs) has devolved into "dead data swamps built only for viewing," Palantir's paradigm shift is founded on the following principles.
 
-👉 **[書籍の全文を読む（the-palantir-impact_jp.md）](docs/the-palantir-impact_jp.md)**
+1. **The Operational Layer (Data as an Operational Layer)**
+   Data is not meant for humans to manually move reality after analysis. The ontology is a "digital twin" that replicates real-world business on a system, serving as the layer where data itself directly drives business operations.
+2. **Convergence of Noun and Verb (Integration of Nouns and Verbs)**
+   Systems are understood as the integration of "Objects (nouns)" and "Actions (verbs)." The model encompasses not only states such as customers and parts (semantics), but also kinetic elements such as orders and status changes (kinetics).
+3. **Governance of Reality (Version Control for the Real World)**
+   The immense power to rewrite real-world operations demands absolute governance. Even in an era where AI autonomously makes proposals, the ontology achieves both extreme speed and governance through "branching" and "review."
 
-### 目次 (Table of Contents)
-* **Part I: The Problem and the Paradigm（課題とパラダイムシフト）**
-  * 序章：AI時代になぜ「データ統合」は失敗するのか
-  * 第1章：謎多きユニコーン「Palantir」と真のデータ統合
-  * 第2章：Palantirの心臓部「オントロジー」とは何か？
-* **Part II: The Architecture of Action（アクションのアーキテクチャ）**
-  * 第3章：【図解】アクションのアーキテクチャ
-  * 第4章：現実世界のガバナンス
-* **Part III: The Destiny of Intelligence（AIと運用が交差する未来）**
-  * 第5章：世界と日本を変えるPalantirのユースケース
-  * 第6章：オントロジー×AIがもたらす未来
-  * 終章：オントロジー思考で組織のデータを設計せよ
+---
+
+## 📖 Read the Book
+
+You can read the full text from the link below.
+
+👉 **[Read the full book (the-palantir-impact_jp.md)](docs/the-palantir-impact_jp.md)**
+
+### Table of Contents
+* **Part I: The Problem and the Paradigm**
+  * Prologue: Why "Data Integration" Fails in the AI Era
+  * Chapter 1: The Enigmatic Unicorn "Palantir" and True Data Integration
+  * Chapter 2: What Is the "Ontology" — The Heart of Palantir?
+* **Part II: The Architecture of Action**
+  * Chapter 3: [Illustrated] The Architecture of Action
+  * Chapter 4: Governance for the Real World
+* **Part III: The Destiny of Intelligence (The Future Where AI and Operations Intersect)**
+  * Chapter 5: Palantir Use Cases Transforming the World and Japan
+  * Chapter 6: The Future of Ontology × AI
+  * Epilogue: Design Your Organization's Data with Ontology Thinking
 
 ---
 
@@ -62,12 +62,12 @@ This project is part of the research by Leading.AI.<br>
 
 Related Projects
 
-本書は、以下のオープンソースプロジェクトと連携しています。
+This book is part of a series of open-source research projects:
 
 - **[The Silence of Intelligence](https://github.com/Leading-AI-IO/the-silence-of-intelligence)** —
-  Anthropic CEO ダリオ・アモディの思想を体系化したOSS書籍。Scaling Lawsの本質と、AIが人類にもたらす未来を解き明かします。
+  An OSS book systematizing the philosophy of Anthropic CEO Dario Amodei. Explores the essence of Scaling Laws and the future AI brings to humanity.
 - **[Depth & Velocity](https://github.com/Leading-AI-IO/depth-and-velocity)** —
-  生成AI時代の新規事業開発方法論。従来の「広く浅い」アプローチに代わる、深さと速度を両立する実践フレームワーク。
+  A methodology for new business development in the generative AI era. A practical framework that achieves both depth and speed, replacing the conventional "broad and shallow" approach.
 
 ---
 
@@ -75,7 +75,7 @@ Related Projects
 Issues and Pull Requests are welcome.
 If you find any typos or have updated information about Palantir's architecture or Ontology, please feel free to contribute.
 
-誤字脱字の修正や、Palantirのアーキテクチャやオントロジーに関する最新情報の提供など、エンジニアの皆様からのPull Requestを歓迎します。
+We welcome Pull Requests from engineers, including corrections of typos and provision of the latest information about Palantir's architecture and ontology.
 
 ## License
 This project is licensed under the [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/) - see the [LICENSE](LICENSE) file for details.

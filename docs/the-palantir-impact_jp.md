@@ -1,418 +1,418 @@
-# パランティアの衝撃：データとAIを繋ぐ「オントロジー」戦略 🌐
+# The Palantir Impact: Ontology Strategy Connecting Data and AI 🌐
 
-## Part I: The Problem and the Paradigm（課題とパラダイムシフト）
+## Part I: The Problem and the Paradigm
 
-### 序章：AI時代になぜ「データ統合」は失敗するのか
+### Prologue: Why "Data Integration" Fails in the AI Era
 
-皆さん、自社のデータ基盤（データレイクやデータウェアハウス）を思い浮かべてみてください。<br>
-莫大な予算を投じて構築されたその基盤には、社内のあらゆるシステムからデータが吸い上げられているはずです。<br>
-その上にはBI（ビジネスインテリジェンス）ツールが被せられ、経営陣向けの美しいダッシュボードが日々更新されています。<br>
+Think about your company's data infrastructure (data lakes or data warehouses).<br>
+Huge budgets have been spent to suck data from every system in the company into this infrastructure.<br>
+On top of that, BI (Business Intelligence) tools are layered, and beautiful dashboards for executives are updated daily.<br>
 
-しかし、現場の最前線に目を向けると、信じられない光景が広がっていませんか？<br>
-「このダッシュボードの売上予測がおかしい。元データはどこだ？」とExcelをバケツリレーする担当者。<br>
-「AIで需要予測モデルを作ったが、日々の発注システムに連携できず、結局画面を見ながら手入力している」という運用担当者。<br>
-データ基盤を入れたにもかかわらず、業務プロセスは分断されたままなのです。<br>
+However, if you look at the front lines of the business, an unbelievable scene unfolds.<br>
+"The sales forecast on this dashboard is wrong. Where is the raw data?" asks a manager passing Excel files around.<br>
+"We built a demand forecasting model with AI, but it can't link to the daily ordering system, so I end up typing it in manually while looking at the screen," sighs an operations staff member.<br>
+Despite implementing a data infrastructure, business processes remain fragmented.<br>
 
-なぜ、このような悲劇が世界中のエンタープライズ企業で繰り返されるのでしょうか？<br>
-その根本原因は、私たちがこれまでデータを「分析するための静的なスナップショット（見るためだけのデータ）」としてしか扱ってこなかったことにあります。<br>
-
-```mermaid
-flowchart LR
-    A[業務システム群: ERP / CRM] -->|夜間バッチ等で抽出| B(データレイク / DWH)
-    B --> C{BIツール / AIモデル}
-    C -.->|人間が画面を見て判断| D((現場の担当者))
-    D -.->|手作業で再入力| A
-```
-上の図が示す通り、従来のシステムアーキテクチャでは、「データを貯めて見せる場所（DWH/BI）」と「業務を実行して書き換える場所（業務システム）」が完全に分断されています。<br>
-この構造的な断絶がある限り、どれほど高度なAIモデルを導入しても、最終的なアクションは人間の「手作業（再入力）」に依存し、スケールしません。<br>
-
-#### Palantirがもたらすパラダイムシフト：「オントロジー」という運用レイヤー
-
-本書で解説するPalantir（パランティア）の「オントロジー（Ontology）」戦略は、この根深いサイロ化の病を根本から打ち破るパラダイムシフトです。<br>
-
-知識工学・セマンティックウェブ文脈で広く引用される定義は、Gruber（1993）の「オントロジー＝概念化の明示的仕様」です。<br>
-さらに、Studerら（1998）はこれを発展させ「共有された概念化の形式的・明示的仕様」という定義を提示しています。<br>
-しかし、Palantir Foundryにおけるオントロジーは、一般的な“知識表現としてのオントロジー”概念を踏まえつつも、組織の運用（operational）を駆動するための「運用レイヤー／デジタルツイン」として設計されています。<br>
-
-Foundry公式のバックエンド解説は、Foundryオントロジーを「組織のための運用レイヤー」と位置づけ、データセット等のデジタル資産を現実世界の資産・概念に結び付け、「デジタルツインとして機能」すると説明しています。<br>
+Why does this tragedy repeat itself in enterprise companies worldwide?<br>
+The root cause is that we have historically treated data only as "static snapshots for analysis (data just for viewing)."<br>
 
 ```mermaid
 flowchart LR
-    A2[各種データソース] -->|インデックス化| B2{オントロジー / 運用レイヤー}
-    B2 -->|名詞と動詞を活用| C2[意思決定アプリ・AIモデル]
-    C2 -->|人間の判断・自動化| D2((業務アクション))
-    D2 -->|結果を即時書き戻し| B2
+    A[Business Systems: ERP / CRM] -->|Extract via Nightly Batch| B(Data Lake / DWH)
+    B --> C{BI Tools / AI Models}
+    C -.->|Humans look at screens to decide| D((Frontline Staff))
+    D -.->|Manual Re-entry| A
 ```
-この「見るだけのデータ」から「ビジネスを直接動かすためのデータ」への転換こそが、AI時代における真のデジタルトランスフォーメーションの鍵となります。<br>
+As the diagram above shows, in traditional system architectures, the "place to store and show data (DWH/BI)" and the "place to execute business and write changes (Business Systems)" are completely disconnected.<br>
+As long as this structural disconnect exists, no matter how advanced the AI models introduced are, the final action relies on human "manual work (re-entry)" and cannot scale.<br>
+
+#### The Paradigm Shift Brought by Palantir: Ontology as an Operational Layer
+
+The "Ontology" strategy by Palantir, explained in this book, is a paradigm shift that fundamentally breaks this deep-rooted disease of silos.<br>
+
+In the context of knowledge engineering and the semantic web, the widely cited academic definition of "ontology" is an "explicit specification of a conceptualization" by Gruber (1993).<br>
+Furthermore, Studer et al. (1998) expanded on this, proposing the definition of a "formal, explicit specification of a shared conceptualization."<br>
+However, the ontology in Palantir Foundry, while building on the general concept of "ontology as knowledge representation," is designed as an "Operational Layer / Digital Twin" to drive the operations of an organization.<br>
+
+Foundry's official backend documentation positions the Foundry Ontology as an "Operational Layer for the organization," binding digital assets like datasets to real-world assets and concepts to "function as a digital twin."<br>
+
+```mermaid
+flowchart LR
+    A2[Various Data Sources] -->|Indexing| B2{Ontology / Operational Layer}
+    B2 -->|Utilize Nouns and Verbs| C2[Decision Apps & AI Models]
+    C2 -->|Human Judgment & Automation| D2((Business Actions))
+    D2 -->|Write-back results immediately| B2
+```
+This transition from "data just for viewing" to "data that directly drives the business" is the key to true digital transformation in the AI era.<br>
 
 ---
 
-### 第1章：謎多きユニコーン「Palantir」の正体と真のデータ統合
+### Chapter 1: The True Identity of the Enigmatic Unicorn "Palantir" and True Data Integration
 
-「オントロジー」という技術の深淵（第2章以降）に触れる前に、そもそも「Palantir」とは何者なのかを知る必要があります。<br>
-彼らはAWSやSnowflakeのような一般的なクラウドベンダーとも、SalesforceのようなSaaS企業とも全く異なる特異なDNAを持っています。<br>
+Before touching the depths of the technology called "ontology" (from Chapter 2 onwards), we must first understand who "Palantir" is.<br>
+They possess a completely different DNA from general cloud vendors like AWS or Snowflake, or SaaS companies like Salesforce.<br>
 
-#### 1-1. 秘密のベールに包まれた出自：CIAと戦場から生まれたDNA
+#### 1-1. A DNA Born from the CIA and the Battlefield: Origins Shrouded in Secrecy
 
-Palantir Technologiesは2003年、ピーター・ティール（PayPal共同創業者）や現在CEOを務めるアレックス・カープらによって設立されました。<br>
-初期の主要な投資家には、CIA（米国中央情報局）のベンチャーキャピタル部門であるIn-Q-Telが名を連ねています。<br>
+Palantir Technologies was founded in 2003 by Peter Thiel (co-founder of PayPal) and Alexander Karp, who currently serves as CEO.<br>
+Early major investors included In-Q-Tel, the venture capital arm of the CIA (Central Intelligence Agency).<br>
 
-彼らが最初に開発したプラットフォーム「Palantir Gotham（ゴッサム）」は、テロリストのネットワーク追跡やサイバーセキュリティなど、米国防総省や情報機関の極秘任務のために構築されました。<br>
-戦場や諜報の最前線では、「データのサイロ化」や「システム間の連携不足」は単なる非効率ではなく、 **「人命の喪失」や「国家の危機」に直結する致命的な欠陥** となります。<br>
-あらゆる形式の断片的なデータを繋ぎ合わせ、瞬時に全体像を把握し、即座に次の作戦（アクション）へと移行する。<br>
-Palantirの強烈な「運用（オペレーション）」と「ガバナンス」への執着は、この極限環境で鍛え上げられたものなのです。<br>
+The first platform they developed, "Palantir Gotham," was built for top-secret missions for the U.S. Department of Defense and intelligence agencies, such as tracking terrorist networks and cybersecurity.<br>
+On the front lines of battlefields and intelligence, "data silos" and "lack of system integration" are not mere inefficiencies; they are **fatal flaws directly leading to "loss of life" and "national crises."**<br>
+Connecting fragmented data of all formats, grasping the big picture instantly, and immediately transitioning to the next operation (action).<br>
+Palantir's intense obsession with "operations" and "governance" was forged in these extreme environments.<br>
 
-#### 1-2. 「データの箱」ではなく「組織のOS」：既存ITベンダーとの決定的差異
+#### 1-2. Not a "Data Box" but an "Organizational OS": The Decisive Difference from Existing IT Vendors
 
-一般的なITエコシステムの中で、Palantirは独自のポジションを確立しています。<br>
+Palantir has established a unique position within the general IT ecosystem.<br>
 
-- **インフラ / DWHベンダー（AWS, Google Cloud, Snowflake等）との違い：**
-彼らは「データを安く大量に保存・計算する箱（土台）」を提供します。<br>
-しかし、その箱の中のデータをどう使ってビジネスを動かすかは顧客に委ねられています。<br>
-Palantirはこれらの箱を置き換えるのではなく、その上に被さり「データを意思決定と行動に変換するレイヤー」として機能します。<br>
+- **Difference from Infrastructure / DWH Vendors (AWS, Google Cloud, Snowflake, etc.):**
+They provide "boxes (foundations)" to store and compute large amounts of data cheaply.<br>
+However, how to use the data in that box to drive the business is left to the customer.<br>
+Palantir does not replace these boxes; it sits on top of them, functioning as a "layer that converts data into decision-making and action."<br>
   
-- **業務SaaS（Salesforce, SAP等）との違い：**
-SaaSは「営業」や「人事」といった特定部門の業務を劇的に効率化します。<br>
-しかし、部門ごとに最適化されたSaaSが増えるほど、企業全体としてはデータがサイロ化していきます。<br>
-Palantirは、これら点在するSaaSやレガシーシステムからデータを統合し、組織全体を俯瞰する「単一のOS」を提供します。<br>
+- **Difference from Business SaaS (Salesforce, SAP, etc.):**
+SaaS dramatically streamlines operations for specific departments like "Sales" or "HR."<br>
+However, the more department-optimized SaaS an enterprise uses, the more siloed the company's data becomes overall.<br>
+Palantir integrates data from these scattered SaaS and legacy systems to provide a "single OS" that oversees the entire organization.<br>
   
 
-#### 1-3. 戦場からエンタープライズへ：FoundryとAIPの誕生
+#### 1-3. From the Battlefield to the Enterprise: The Birth of Foundry and AIP
 
-国防・諜報機関で培われたこの圧倒的なデータ統合・解析のノウハウを、民間企業（製造、金融、ヘルスケア、サプライチェーン等）の複雑なオペレーションに適用するために生み出されたのが、本書の主役である **「Palantir Foundry（ファウンドリー）」** です。<br>
+The protagonist of this book, **"Palantir Foundry,"** was created to apply this overwhelming data integration and analysis expertise cultivated in defense and intelligence agencies to the complex operations of private enterprises (manufacturing, finance, healthcare, supply chains, etc.).<br>
 
-アーキテクチャセンターの説明では、オントロジーはPalantirアーキテクチャの中核であり、単にデータを整理するのではなく「企業の複雑で相互接続された意思決定」を表現するために設計されたと述べています。<br>
+In the Architecture Center documentation, it is stated that the ontology is the core of the Palantir architecture, designed not simply to organize data, but to represent "the complex, interconnected decision-making of an enterprise."<br>
 
-そして現在、このFoundryの強固なオントロジー基盤の上に、最新の大規模言語モデル（LLM）を安全に統合するためのプラットフォーム **「AIP（AI Platform）」** が展開されています。<br>
-AIPは顧客のプライベートネットワーク内で機能し、AIが現実のビジネスを安全に実行できる環境を提供しています。<br>
+Today, built upon this robust ontology foundation of Foundry, the **"AIP (AI Platform)"** is deployed to safely integrate the latest Large Language Models (LLMs).<br>
+AIP functions within the customer's private network, providing an environment where AI can safely execute real-world business tasks.<br>
 
-#### 1-4. エンタープライズの複雑性に立ち向かう：独自の組織モデル「FDE」
+#### 1-4. Confronting Enterprise Complexity: The Unique "FDE" Organizational Model
 
-巨大企業のデータ統合は、部門間の対立や無数のレガシーシステムが絡み合う極めて困難なプロジェクトです。<br>
-Palantirが支持される最大の理由は、優れたソフトウェア以上に、その導入アプローチにあります。<br>
+Data integration in giant corporations is an extremely difficult project tangled with inter-departmental conflicts and countless legacy systems.<br>
+The biggest reason Palantir is supported lies in its implementation approach even more than its excellent software.<br>
 
-外部分析（Everest Group）によれば、Palantirが自社エンジニアを顧客のオペレーション環境に直接埋め込み、Palantirスタック上で本番ワークフローを構築し、<br>
-FDSE（Forward Deployed Software Engineers：前線展開エンジニア）が単一顧客に集中してプロダクション品質のワークフローを協働構築する、と説明されています。<br>
+According to external analysis (Everest Group), Palantir embeds its own engineers directly into the customer's operational environment, building production workflows on the Palantir stack.<br>
+FDSEs (Forward Deployed Software Engineers) focus on a single customer to collaboratively build production-quality workflows.<br>
 
-現場で泥臭く高速にシステムを作る一方で、Foundryプラットフォーム上にはガバナンスを維持する設計思想が組み込まれています。<br>
-具体的には、Ontology Proposalsはメインバージョンから派生したブランチで変更し、レビュー／承認後にメインへ取り込む仕組み（プルリクエストに類似）として説明されています。<br>
-さらに Foundry Branching では、ブランチが「単一のオントロジーに紐づく」こと、提案作成・レビュー・マージまでがライフサイクルとして厳格に規定されています。<br>
+While rapidly building systems on the front lines, the Foundry platform inherently incorporates a design philosophy that maintains governance.<br>
+Specifically, Ontology Proposals are explained as a mechanism to make changes in a branch derived from the main version, merging it back to main only after review/approval (similar to a pull request).<br>
+Furthermore, Foundry Branching dictates that branches are tied to a "single ontology," and the lifecycle from proposal creation to review and merge is strictly enforced.<br>
 
-#### 1-5. AIがエンジニアになる日：AI FDEの衝撃と徹底したガバナンス
+#### 1-5. The Day AI Becomes an Engineer: The Impact of AI FDE and Thorough Governance
 
-さらに驚くべきことに、この「FDE（前線展開）」の概念は人間だけにとどまらず、AIへと拡張されつつあります。<br>
+Surprisingly, this concept of "Forward Deployed (FDE)" is extending beyond humans to AI.<br>
 
-Palantir は、AI FDE（AI-powered forward deployed engineer）として、自然言語の要求をFoundry操作へ変換し、データ変換パイプラインの作成・レポジトリ管理・オントロジー構築や保守などを行う対話型エージェントを提供しています。<br>
+Palantir provides an interactive agent called AI FDE (AI-powered forward deployed engineer), which translates natural language requests into Foundry operations, taking over tasks like creating data transformation pipelines, repository management, and ontology construction/maintenance.<br>
 
 ```mermaid
 sequenceDiagram
-    participant User as 業務エキスパート
+    participant User as Business Expert
     participant AIFDE as AI FDE
-    participant Ontology as オントロジー
-    participant Admin as レビュアー
+    participant Ontology as Ontology
+    participant Admin as Reviewer
     
-    User->>AIFDE: 「新規データからオントロジーを構築して」
-    Note over AIFDE: ユーザーの既存権限を厳格に尊重
-    AIFDE->>Ontology: 作業用ブランチを作成・構築
-    AIFDE->>User: ブランチ提案（プロポーザル）を提示
-    User->>Admin: 提案のレビュー依頼
-    Admin-->>Ontology: 人間の承認後、メインへ統合（マージ）
+    User->>AIFDE: "Build an ontology from new data"
+    Note over AIFDE: Strictly respects user's existing permissions
+    AIFDE->>Ontology: Create & build a working branch
+    AIFDE->>User: Present branch proposal for review
+    User->>Admin: Request review of the proposal
+    Admin-->>Ontology: Merge to main after human approval
 ```
-AIがシステムを自動構築すると聞くと暴走を懸念するかもしれませんが、この操作は「ユーザーの既存権限を尊重」し、「ブランチ提案を必ずレビュー用に提示する」よう設計されています。<br>
-これにより、誤用や機密データの過剰露出リスクを極限まで低減しつつ、人間とAIが安全に協働できるのです。<br>
+Hearing that AI builds systems automatically might raise fears of it running out of control, but this operation is designed to "respect the user's existing permissions" and "always present a branch proposal for review."<br>
+This significantly reduces the risk of misuse or excessive exposure of sensitive data, allowing humans and AI to collaborate safely.<br>
 
 ---
 
-### 第2章：Palantirの心臓部「オントロジー」とは何か？
+### Chapter 2: What Is the "Ontology" — The Heart of Palantir?
 
-Palantir Foundryを真に理解し、自社のビジネスに革命を起こすためには、「オントロジー」という概念のパラダイムシフトを腹の底から理解する必要があります。<br>
-本章では、世界を「名詞と動詞」でモデリングする独自のアーキテクチャについて深く掘り下げます。<br>
+To truly understand Palantir Foundry and revolutionize your business, you need a deep, visceral understanding of the paradigm shift brought by the "Ontology" concept.<br>
+This chapter delves into the unique architecture that models the world using "Nouns and Verbs."<br>
 
-#### 2-1. データの世界を「名詞」と「動詞」でモデリングする
+#### 2-1. Modeling the Data World with "Nouns" and "Verbs"
 
-Palantirのオントロジーが他を圧倒する最大の理由は、セマンティクス（オブジェクト・プロパティ・リンク）と、<br>
-キネティクス（アクション・ファンクション・動的セキュリティ）を一体化したシステムである点にあります。<br>
+The biggest reason Palantir's ontology outperforms others is that it is a system that integrates Semantics (objects, properties, links) and
+Kinetics (actions, functions, dynamic security).<br>
 
-通常、データベース設計は「名詞（データ）」の設計に終始し、「動詞（ビジネスロジックや更新処理）」は別のアプリケーション層に切り離されます。<br>
-しかしFoundryでは、必要要素をセマンティック要素（オブジェクト、プロパティ、リンク）と運動的要素（アクション、機能、ダイナミックセキュリティ）に分けて明示します。<br>
+Usually, database design ends with the design of "nouns (data)," while "verbs (business logic and update processes)" are separated into another application layer.<br>
+However, in Foundry, the necessary elements are explicitly divided into semantic elements (objects, properties, links) and kinetic elements (actions, functions, dynamic security) and defined together.<br>
 
-**① セマンティック要素（名詞の世界：意味論）**
+**1. Semantic Elements (The World of Nouns: Meaning)**
 
-- **オブジェクトタイプ（Object type）:** 現実世界の概念（名詞）を表す型であり、データソースを入力としてオブジェクトインスタンスを生成します 。
-- **プロパティ（Property）:** オブジェクトの属性です 。
-- **リンクタイプ（Link type）:** オブジェクトタイプ間の関係であり、1対1/1対多/多対多をサポートします 。
+- **Object type:** A type representing a real-world concept (noun), generating object instances using data sources as input.
+- **Property:** The attributes of an object.
+- **Link type:** The relationships between object types, supporting 1-to-1, 1-to-many, and many-to-many relationships.
   
 
-**② 運動的要素（動詞の世界：キネティクス）**
+**2. Kinetic Elements (The World of Verbs: Movement)**
 
-- **アクション（Action） / アクションタイプ（Action type）:** Actionは1つ以上のオブジェクトのプロパティ等を変更する単一トランザクションであり、Action typeは実施可能な変更セットと副作用定義を含みます 。
-- **ファンクション（Functions）:** 迅速に実行できるロジックを記述し、運用ダッシュボードや意思決定アプリを支えます 。
-- **動的セキュリティ（Dynamic security）:** オントロジーの運動的要素として明記されています 。
+- **Action / Action type:** An Action is a single transaction that modifies the properties of one or more objects. The Action type includes the executable change set and side-effect definitions.
+- **Functions:** Rapidly executable logic that supports operational dashboards and decision-making apps.
+- **Dynamic security:** Explicitly stated as a kinetic element of the ontology.
 
 ```mermaid
 flowchart LR
-    subgraph Semantics [名詞の世界: セマンティクス]
-        O[オブジェクト] ---|has| P[プロパティ]
-        O ---|connects| L[リンク]
+    subgraph Semantics [World of Nouns: Semantics]
+        O[Object] ---|has| P[Property]
+        O ---|connects| L[Link]
     end
-    subgraph Kinetics [動詞の世界: キネティクス]
-        A[アクション] -->|プロパティを変更| O
-        F[ファンクション] -->|ロジックを計算| O
+    subgraph Kinetics [World of Verbs: Kinetics]
+        A[Action] -->|Modifies property| O
+        F[Function] -->|Calculates logic| O
     end
 ```
-「見るためのモデル」だけでなく「変えるためのモデル」を同時に作る。<br>
-更新経路を含めてデータモデルを閉じることで、初めてAIやアプリケーションは、迷うことなく現実世界に対して安全なアクションを実行できるようになるのです。<br>
+Creating not only "a model for viewing" but also "a model for changing" simultaneously.<br>
+By closing the data model to include update paths, AI and applications can, for the first time, execute safe actions against the real world without hesitation.<br>
 
-## Part II: The Architecture of Action（アクションのアーキテクチャ）
+## Part II: The Architecture of Action
 
-### 第3章：【図解】オントロジーを支えるアーキテクチャ
+### Chapter 3: [Illustrated] Architecture Supporting the Ontology
 
-オントロジーは単なる思想上の概念ではなく、極めて堅牢なマイクロサービス群によって物理的に支えられています。<br>
-現実世界をシステム上でモデリングするためには、「意味論（定義）」と「運動（実行）」を処理する強力なバックエンドが不可欠です。<br>
+The ontology is not merely a conceptual idea; it is physically supported by extremely robust microservices.<br>
+To model the real world on a system, a powerful backend that processes "semantics (definition)" and "kinetics (execution)" is essential.<br>
 
-#### 3-1. アーキテクチャを支える5つの柱
+#### 3-1. Five Pillars of the Architecture
 
-Foundryの公式バックエンド解説では、アーキテクチャ面において Object Storage V2 を中核に、以下の各サービスが明確に責任を分担していることが説明されています 。<br>
+In Foundry's official backend documentation, the architecture centers around Object Storage V2, with the following services sharing distinct responsibilities:<br>
 
-- **OMS (Ontology Metadata Service):** オブジェクトタイプ、リンクタイプ、アクションタイプ等の定義を担う包括サービスです 。ここでオントロジーの「意味論（スキーマ）」が決定されます。
-- **Object databases:** インデックス化されたデータの保存・クエリ・編集調停を担当する心臓部です 。
-- **OSS (Object Set Service):** オントロジーの読み取りを提供し、検索・フィルタ・集約・ロードを可能にするサービスです 。
-- **Actions:** 現実世界の変化をシステムに反映させる編集（書き込み）を担います 。複雑な権限・条件を可能にし、履歴的アクションログ作成にも使えると説明されています 。
-- **Funnel (Object Data Funnel):** データソースとユーザー編集を読み取り、オブジェクトDBへインデックス化する役割を持っています 。
+- **OMS (Ontology Metadata Service):** A comprehensive service responsible for defining object types, link types, action types, and more. This is where the "schema" of the ontology is decided.
+- **Object databases:** The heart of the system, responsible for storing indexed data, querying, and mediating edits.
+- **OSS (Object Set Service):** Provides ontology reads, enabling search, filtering, aggregation, and loading.
+- **Actions:** Handles edits (writes) that reflect real-world changes into the system. It enables complex permissions and conditions, and can also be used to create historical action logs.
+- **Funnel (Object Data Funnel):** Reads data sources and user edits, and indexes them into the object databases.
 
 ```mermaid
 flowchart LR
-    subgraph backend ["Foundry オントロジー・バックエンド"]
-        F["Funnel<br>(データの読み取り・インデックス化)"]
-        OMS["OMS<br>(メタデータとスキーマの定義)"]
-        ODB[("Object databases<br>(インデックスデータの保存・編集調停)")]
-        OSS["OSS<br>(検索・フィルタ・集約・ロード)"]
-        ACT["Actions<br>(ユーザー編集・トランザクションの適用)"]
+    subgraph backend ["Foundry Ontology Backend"]
+        F["Funnel<br>(Reads Data & Indexing)"]
+        OMS["OMS<br>(Metadata & Schema Definition)"]
+        ODB[("Object databases<br>(Store Index Data & Edit Mediation)")]
+        OSS["OSS<br>(Search, Filter, Aggregate, Load)"]
+        ACT["Actions<br>(Apply User Edits & Transactions)"]
         
-        F -->|"インデックス化"| ODB
-        OMS -.->|"スキーマ参照"| ODB
-        ODB -->|"データ提供"| OSS
-        ACT -->|"編集(書き込み)の適用"| ODB
+        F -->|"Indexing"| ODB
+        OMS -.->|"Schema Reference"| ODB
+        ODB -->|"Provide Data"| OSS
+        ACT -->|"Apply Edits (Writes)"| ODB
     end
     style ODB fill:#e6e6fa,stroke:#333,stroke-width:2px
 ```
 
-#### 3-2. 現実世界のインデックス化と物理的制約
+#### 3-2. Indexing the Real World and Physical Constraints
 
-データをオントロジー向けインデックスへ変換する「インデックス化」は、Funnelが統括し、バッチ（Funnelバッチ）とストリーミング（Funnelストリーミング）を用途に応じて選択します。<br>
-インデックス化は Object Storage V2 を対象とし、Funnel はオブジェクトインスタンスを作成・変更し、データとメタデータを最新に保つパイプラインを調整します。<br>
+"Indexing" converts data into ontology-ready indexes. Funnel oversees this, utilizing either batch (Funnel batch) or streaming (Funnel streaming) pipelines depending on the use case.<br>
+Indexing targets Object Storage V2, and Funnel coordinates the pipelines to create and modify object instances, keeping data and metadata up-to-date.<br>
 
-- **Funnelバッチパイプライン:** データソースやユーザー編集からのデータを効率的にインデックス化する内部ジョブパイプラインです。
-- **Funnelストリーミングパイプライン:** Foundry Streams を入力とし、秒〜分単位での低レイテンシインデックス化を可能にします。
+- **Funnel batch pipeline:** An internal job pipeline that efficiently indexes data from sources or user edits.
+- **Funnel streaming pipeline:** Takes Foundry Streams as input and enables low-latency indexing (seconds to minutes).
   
-しかし、アーキテクトは物理的な制約も理解する必要があります。<br>
-ストリーミングオブジェクトタイプには現時点での制限が存在し、ユーザー編集非対応やMDO（マルチデータソースオブジェクト）非対応などが公式に列挙されています。<br>
+However, architects must also understand physical constraints.<br>
+Streaming object types currently have limitations, such as not supporting user edits or MDOs (Multi-Dataset Objects), which are officially listed.<br>
 
 ---
 
-### 第4章：エンタープライズを支える「ガバナンスとセキュリティ」
+### Chapter 4: "Governance and Security" Supporting the Enterprise
 
-データがビジネスの「運用レイヤー」となる時、システム上の変更は直ちに現実世界のビジネスを動かします。<br>
-分析用のダッシュボードであれば、データが間違っていても「グラフがおかしい」で済みますが、オントロジーを通じて発注やステータス変更が自動化されている環境では、<br>
-一つの誤作動が「不要な部品を1万個誤発注する」「工場の生産ラインを止める」といった致命的な実害（インシデント）に直結します。<br>
+When data becomes the "operational layer" of a business, system changes immediately drive real-world business operations.<br>
+For an analytical dashboard, if the data is wrong, the worst that happens is "the graph looks weird." However, in an environment where ordering and status changes are automated through the ontology,<br>
+a single malfunction directly leads to fatal real-world damage (incidents), such as "mistakenly ordering 10,000 unnecessary parts" or "stopping a factory production line."<br>
 
-圧倒的なスピードで現実を書き換える力を持つからこそ、Palantirは一般的なITツールを遥かに凌駕する強固なガバナンスとフェイルセーフの仕組みをプラットフォームの根底に組み込んでいます。<br>
+Because it possesses the power to rewrite reality at overwhelming speeds, Palantir embeds robust governance and fail-safe mechanisms at the foundation of the platform, far surpassing general IT tools.<br>
 
-#### 4-1. セキュリティのパラダイムシフト：「見せない」から「安全に動かす」へ
+#### 4-1. The Security Paradigm Shift: From "Hiding" to "Moving Safely"
 
-従来のエンタープライズITにおけるセキュリティとは、主に「データを見せないこと（アクセス制限・暗号化）」を指していました。<br>
-しかし、オントロジー駆動型アーキテクチャにおいては、セキュリティの定義が「現実世界に対する誤った変更・破壊を防ぐこと」へと次元が引き上がります。<br>
+In traditional enterprise IT, security mainly meant "hiding data (access restrictions and encryption)."<br>
+However, in an ontology-driven architecture, the definition of security elevates to "preventing erroneous changes and destruction to the real world."<br>
 
-誰が、どのデータをもとに、どのようなビジネスロジック（アクション）を実行できるのか。<br>
-この「運動的要素（キネティクス）」に対する厳密な統制こそが、Foundryが軍事・諜報機関から受け継いできた強靭なガバナンスの正体です。<br>
+Who can execute what business logic (action) based on which data?<br>
+Strict control over these "Kinetic Elements" is the true identity of the resilient governance Foundry inherited from military and intelligence agencies.<br>
 
-#### 4-2. データの世界における「ブランチ」とレビューのライフサイクル
+#### 4-2. The Lifecycle of "Branches" and Reviews in the Data World
 
-Palantirは、ソフトウェアエンジニアリングにおいて歴史的に証明された「バージョン管理」と「ピアレビュー」のベストプラクティスを、データモデルと現実の運用プロセスに直接持ち込みました。<br>
-その核となるのが、**ブランチ（Branching）** と **提案（Proposal）** の仕組みです。<br>
+Palantir brought the historically proven best practices of "version control" and "peer review" in software engineering directly into data modeling and real-world operational processes.<br>
+The core of this is the **Branching** and **Proposal** mechanism.<br>
 
-* **Ontology Proposals（提案と承認のプロセス）:**
-現実の運用ルール（オントロジーのスキーマ定義やアクションの挙動）を変更する際、エンジニアであっても直接本番環境を書き換えることはできません。<br>
-メインバージョンから派生した「作業用ブランチ」上で安全に変更を加え、テストを行い、レビューと承認（Approve）を経て初めてメイン環境へ取り込まれます。<br>
-これは開発現場で日常的に行われるプルリクエスト（Pull Request）の概念をデータ運用に適用したものです。<br>
-* **Foundry Branchingの厳格な適用:**
-ブランチは「単一のオントロジーに紐づく」ものとして一元管理されます。<br>
-提案作成からレビュー、マージに至るまでのライフサイクルがプラットフォームレベルで強制されるため、特定の担当者によるシャドーITや、無許可の運用変更を構造的に排除できます。<br>
+* **Ontology Proposals (Process of Proposal and Approval):**
+When changing real-world operational rules (ontology schema definitions or action behaviors), even engineers cannot directly rewrite the production environment.<br>
+Changes are safely made on a "working branch" derived from the main version, tested, and only merged into the main environment after review and approval.<br>
+This applies the concept of Pull Requests, commonly used in development, to data operations.<br>
+* **Strict Application of Foundry Branching:**
+Branches are centrally managed as being tied to a "single ontology."<br>
+Because the lifecycle from proposal creation to review and merge is enforced at the platform level, shadow IT or unauthorized operational changes by specific personnel can be structurally eliminated.<br>
 
 ```mermaid
 stateDiagram-v2
     direction LR
-    [*] --> 作業ブランチ作成: 現実の運用要件が変化
-    作業ブランチ作成 --> スキーマ変更_テスト: Ontology上で変更
-    スキーマ変更_テスト --> Proposal提出: レビュー依頼
-    Proposal提出 --> レビュー中: Approvalsアプリ
+    [*] --> Create_Working_Branch: Real-world operational needs change
+    Create_Working_Branch --> Schema_Change_Test: Edit on Ontology
+    Schema_Change_Test --> Submit_Proposal: Request review
+    Submit_Proposal --> Under_Review: Approvals App
     
-    レビュー中 --> 差し戻し: 却下 (Reject)
-    差し戻し --> スキーマ変更_テスト
+    Under_Review --> Sent_Back: Reject
+    Sent_Back --> Schema_Change_Test
     
-    レビュー中 --> メイン環境へマージ: 承認 (Approve)
-    メイン環境へマージ --> [*]: 全社システムへ即時反映
+    Under_Review --> Merge_to_Main: Approve
+    Merge_to_Main --> [*]: Reflect immediately to enterprise systems
 ```
 
-#### 4-3. 複雑な組織を支える「Approvals アプリ」
+#### 4-3. The "Approvals App" Supporting Complex Organizations
 
-巨大なエンタープライズ企業では、「誰が承認権限を持っているのか」自体が複雑です。<br>
-部門長、コンプライアンス担当、データオーナーなど、多岐にわたるステークホルダーの合意形成を支援するため、Foundryには専用の「Approvals」アプリが用意されています。<br>
+In giant enterprise companies, "who has approval authority" is itself complex.<br>
+To support consensus building among diverse stakeholders such as department heads, compliance officers, and data owners, Foundry provides a dedicated "Approvals" app.<br>
 
-このアプリは、承認ワークフローを一元管理し、ピアレビューやコンプライアンスチェックをシームレスに統合します。<br>
-これにより、「いつ、誰が、どのような理由でその変更を承認したのか」というプロセス自体が完全に透明化されます。<br>
+This app centralizes approval workflows and seamlessly integrates peer reviews and compliance checks.<br>
+This completely brings transparency to the process itself: "when, who, and for what reason the change was approved."<br>
 
-#### 4-4. 緻密なアクセス制御と究極の監査トレール「Action Log」
+#### 4-4. Precise Access Control and the Ultimate Audit Trail "Action Log"
 
-「見せる/見せない」の制御と「誰が何をしたか」の記録も、従来型DWHとは比較にならない解像度で実装されています。<br>
+Control over "show/hide" and recording "who did what" are implemented at a resolution incomparable to traditional DWHs.<br>
 
-- **制限付きビュー（RVs）とMDOによる制御:**
-アクセス制御は、制限付きビュー（Restricted Views; RVs）による「行レベル」の制御に留まりません。<br>
-マルチデータソースオブジェクトタイプ（MDO）による「列／プロパティレベル」の制御も公式にサポートされています。<br>
-これにより、「顧客の購買履歴は全社で共有するが、個人を特定する名前や電話番号は特定部門しか見れない」といった緻密な統制が可能です。<br>
-また、データソースに依存した権限管理から、オントロジーの役割（ontology roles）ベースの認可モデルへと移行が進んでいます。<br>
+- **Control via Restricted Views (RVs) and MDOs:**
+Access control is not limited to "row-level" control via Restricted Views (RVs).<br>
+"Column/property-level" control via Multi-Dataset Object types (MDO) is also officially supported.<br>
+This enables precise governance, such as "customer purchase history is shared company-wide, but personally identifiable names and phone numbers can only be seen by specific departments."<br>
+Furthermore, the authorization model is transitioning from data-source-dependent permissions to an ontology roles-based model.<br>
   
-- **究極の監査トレール「アクションログ」:**
-ガバナンスの最後の砦がアクションログです。<br>
-Foundryでは、すべてのアクション提出が「それ自体がオブジェクトタイプ」としてモデル化され、永続的に記録されます。<br>
-アクションタイプと1対1で対応し、誰が、いつ、どのデータを書き換えたのかというログオブジェクトが提出ごとに自動生成され、編集対象のオブジェクトへと自動リンクされます。<br>
-これにより、完全なトレーサビリティ（追跡可能性）が半永久的に担保されます。<br>  
+- **The Ultimate Audit Trail: "Action Log":**
+The final bastion of governance is the Action Log.<br>
+In Foundry, every action submission is modeled as an "object type itself" and recorded permanently.<br>
+Corresponding 1-to-1 with the Action type, a log object detailing who, when, and what data was rewritten is automatically generated for each submission and linked to the edited target object.<br>
+This ensures complete, semi-permanent traceability.<br>  
 
 ---
 
-## Part III: The Destiny of Intelligence（AIと運用が交差する未来）
+## Part III: The Destiny of Intelligence (The Future Where AI and Operations Intersect)
 
-### 第5章：世界と日本を変えるPalantirのユースケース
+### Chapter 5: Palantir Use Cases Transforming the World and Japan
 
-オントロジーという「運用レイヤー」が、具体的にどのようにビジネスの力学を変えるのか。<br>
-国防の極限環境から生まれたこのプラットフォームは、現在、グローバル企業から日本のインフラ企業に至るまで、極めて現実的なビジネス課題を解決しています。<br>
-公開されている一次資料から、その圧倒的な実績の解像度を上げます。<br>
+How exactly does the "Operational Layer" called ontology change the dynamics of business?<br>
+Born from extreme defense environments, this platform is now solving highly realistic business challenges for global corporations and Japanese infrastructure companies alike.<br>
+We increase the resolution of its overwhelming track record based on published primary sources.<br>
 
-#### 5-1. 航空・製造：Airbus（500万部品のデジタルツインとSkywise）
+#### 5-1. Aviation & Manufacturing: Airbus (The 5 Million Part Digital Twin and Skywise)
 
-Palantirと欧州航空機大手Airbusのパートナーシップは、製造業におけるオントロジー活用の金字塔です。<br>
-彼らが直面していたのは、まさに「サイロ化の限界」でした。<br>
+The partnership between Palantir and European aviation giant Airbus is a monumental achievement in ontology utilization in manufacturing.<br>
+What they faced was the very "limit of silos."<br>
 
-- **A350生産の劇的な加速:**
-最新鋭機A350は、約500万個の部品から成り、欧州の複数国、複数工場、無数のサプライヤーとチームにまたがって製造されます。<br>
-以前は、部品の遅延や品質課題などのデータが各地に分散し、誰も「航空機完成までの全体像」を把握できていませんでした。<br>
-これらの分散データをFoundryのオントロジーへと統合し、全部品とスケジュールの関係性をリンクさせることで、<br>
-ボトルネックの特定と優先順位付けが可能となり、A350の納入（delivery）を33%も加速させることに成功しました。<br>
+- **Dramatic Acceleration of A350 Production:**
+The state-of-the-art A350 consists of approximately 5 million parts, manufactured across multiple European countries, factories, and countless suppliers and teams.<br>
+Previously, data on part delays and quality issues was scattered, and no one could grasp the "complete picture until the aircraft was finished."<br>
+By integrating this decentralized data into Foundry's ontology and linking the relationships between all parts and schedules,<br>
+it became possible to identify bottlenecks and prioritize tasks, successfully accelerating A350 delivery by 33%.<br>
   
-- **業界標準プラットフォーム「Skywise」への進化:**
-自社の製造革命にとどまらず、AirbusはPalantirと共に航空業界全体を巻き込むプラットフォーム「Skywise」を構築しました。<br>
-現在、100社を超える航空会社がこの基盤を利用し、航空機1機あたり最大20,000個のセンサーから得られる「毎秒20〜100データポイント」というペタバイト級の時系列データをオントロジー上で処理しています。<br>
-これにより、部品の故障予測や予防保守が可能になり、欠航リスクを劇的に低減させています。<br>
-  
-
-#### 5-2. 保険・介護：SOMPO（リアルデータプラットフォームの構築）
-
-日本国内においても、オントロジーは社会インフラの最適化というミッションに深く浸透しています。<br>
-SOMPOホールディングスは、「リアルデータプラットフォーム（RDP）」構想の中核としてPalantirを採用しました。<br>
-
-- **介護現場のデジタルトランスフォーメーション:**
-SOMPOケアが運営する介護施設において、利用者の健康状態、スタッフのシフト、ケア記録などをFoundryに統合。<br>
-単なるデータ収集ではなく、現場スタッフが次の最適なアクション（ケア支援や緊急対応）を判断するための意思決定支援として活用されています。<br>
-  
-- **損保ジャパンにおける業務プロセスの刷新:**
-保険金請求プロセスにおいて、オントロジーを用いた不正検知や、請求案件のトリアージ（優先順位付け）システムを構築。<br>
-日本国内で8,000人以上が日常業務としてこのプラットフォームを積極的に利用しており、現場の「手作業」をオントロジー上の「アクション」へと置き換えることに成功しています。<br>
+- **Evolution to the Industry Standard Platform "Skywise":**
+Going beyond their own manufacturing revolution, Airbus built "Skywise," a platform involving the entire aviation industry, together with Palantir.<br>
+Currently, over 100 airlines use this foundation, processing petabytes of time-series data on the ontology — "20 to 100 data points per second" obtained from up to 20,000 sensors per aircraft.<br>
+This enables part failure prediction and preventive maintenance, dramatically reducing the risk of flight cancellations.<br>
   
 
-#### 5-3. 日本のエンタープライズエコシステム：富士通×Palantir
+#### 5-2. Insurance & Healthcare: SOMPO (Building a Real Data Platform)
 
-さらに、日本特有のレガシーシステム環境を打破するため、強力なパートナーシップが結ばれています。<br>
-富士通のプレスリリース（2023年12月）では、富士通とPalantir Japanがグローバルパートナーシップを発展させたことが強調されています。<br>
+In Japan as well, the ontology is deeply penetrating the mission of optimizing social infrastructure.<br>
+SOMPO Holdings adopted Palantir as the core of its "Real Data Platform (RDP)" concept.<br>
 
-日本の大企業の多くは、クラウド化への懸念からデータをオンプレミスやプライベートネットワークに閉じ込めています。<br>
-ここで活きるのが、顧客の閉域網でLLMを安全に活用する「AIP（AI Platform）」と「Foundry」の組み合わせです。<br>
-データ・アナリティクス・オペレーションを接続するこの基盤により、セキュリティ要件の厳しい日本の金融機関や官公庁、製造業においても、真のデータ駆動型ビジネスの社会実装が急速に進みつつあります。<br>
+- **Digital Transformation of Nursing Care:**
+In nursing facilities operated by SOMPO Care, user health status, staff shifts, and care records are integrated into Foundry.<br>
+Rather than just collecting data, it is utilized as decision-making support for frontline staff to determine the next optimal action (care support or emergency response).<br>
+  
+- **Revamping Business Processes at Sompo Japan:**
+In the insurance claims process, an ontology-based fraud detection and claim triage (prioritization) system was built.<br>
+Over 8,000 people in Japan actively use this platform for their daily work, successfully replacing "manual tasks" on the front lines with "actions" on the ontology.<br>
+  
+
+#### 5-3. The Japanese Enterprise Ecosystem: Fujitsu × Palantir
+
+Furthermore, to break through the legacy system environments unique to Japan, powerful partnerships have been formed.<br>
+In a press release (December 2023), Fujitsu emphasized that Fujitsu and Palantir Japan have expanded their global partnership.<br>
+
+Many large Japanese companies confine their data to on-premises or private networks due to cloud security concerns.<br>
+This is where the combination of "AIP (AI Platform)" and "Foundry" — safely utilizing LLMs within a customer's closed network — comes into play.<br>
+With this foundation connecting data, analytics, and operations, the social implementation of true data-driven business is rapidly advancing even in Japanese financial institutions, government agencies, and manufacturing industries with strict security requirements.<br>
 
 ---
 
-### 第6章：オントロジー×AIがもたらす未来
+### Chapter 6: The Future Brought by Ontology × AI
 
-現在、世界中の企業が「生成AI（LLM）の自社導入」に奔走しています。<br>
-しかし、その多くが「社内チャットボット」や「議事録の要約」といった表面的な効率化にとどまっています。<br>
-その理由は明確です。AIが、現実のビジネスを動かすための「共通言語（オントロジー）」と「手足（アクション）」を持っていないからです。<br>
+Currently, companies worldwide are rushing to "implement Generative AI (LLMs) internally."<br>
+However, most of this stops at superficial efficiencies like "internal chatbots" and "meeting summaries."<br>
+The reason is clear: AI lacks the "common language (ontology)" and "hands and feet (actions)" to drive real business.<br>
 
-#### 6-1. LLMの限界と「意味論」の壁によるハルシネーションの封じ込め
+#### 6-1. Containing Hallucinations via the Wall of "Semantics" and LLM Limits
 
-大規模言語モデル（LLM）は卓越した推論能力と自然言語処理能力を持ちますが、「顧客のA社の在庫が尽きそうだから、B倉庫から100個出荷する」というような、現実のシステム操作を直接行うことはできません。<br>
-また、社内規程や複雑な業務文脈を理解しきれず、ハルシネーション（もっともらしい嘘）を引き起こすリスクが常に付きまといます。<br>
+Large Language Models (LLMs) possess exceptional reasoning and natural language processing capabilities, but they cannot directly operate real-world systems like "Company A is running out of stock, so ship 100 units from Warehouse B."<br>
+Furthermore, they cannot fully comprehend internal regulations and complex business contexts, constantly carrying the risk of causing hallucinations (plausible lies).<br>
 
-ここで、オントロジーがAIの「堅牢な土台」として機能します。<br>
-FoundryのAIP（AI Platform）環境下では、AIは「生の雑多なデータ」ではなく、「名詞（オブジェクト）」と「動詞（アクション）」として厳密に定義・構造化されたオントロジーを読み込みます。<br>
-AIは「定義されたアクション」の範囲内でしか推論・提案を行えないため、コンテキスト汚染やハルシネーションを極限まで排除し、安全に現実世界のアクションを実行できるようになります。<br>
+Here, the ontology functions as the "robust foundation" for AI.<br>
+Under Foundry's AIP (AI Platform) environment, AI does not read "raw, miscellaneous data" but an ontology strictly defined and structured as "nouns (objects)" and "verbs (actions)."<br>
+Because AI can only infer and propose within the scope of "defined actions," context contamination and hallucinations are eliminated to the absolute limit, enabling safe execution of real-world actions.<br>
 
 ```mermaid
 flowchart LR
-    subgraph standard_ai ["従来のAI活用<br>（リスクと限界）"]
+    subgraph standard_ai ["Traditional AI Utilization<br>(Risks and Limitations)"]
         direction LR
-        A1[("生のサイロ化データ")] -->|"直接アクセス・検索"| B1(("汎用LLM"))
-        B1 -.->|"コンテキストの欠如"| C1["ハルシネーション・誤った推論"]
-        C1 -.->|"システムへの直接書き込み不可"| D1(("手作業への依存・スケールしない"))
+        A1[("Raw Siloed Data")] -->|"Direct Access / Search"| B1(("General-purpose LLM"))
+        B1 -.->|"Lack of Context"| C1["Hallucination / Incorrect Inference"]
+        C1 -.->|"Cannot Write Directly to Systems"| D1(("Reliance on Manual Work / Does Not Scale"))
     end
     style C1 fill:#fcc,stroke:#f33,stroke-width:2px
 ```
 ```mermaid
 flowchart LR
-    subgraph palantir_aip ["Palantir AIP + Ontology<br>（安全と拡張）"]
+    subgraph palantir_aip ["Palantir AIP + Ontology<br>(Safety and Scalability)"]
         direction LR
-        A2[("各種データソース")] -->|"インデックス化"| B2{"オントロジー・名詞と動詞の定義"}
-        B2 -->|"権限と構造化データを提供"| C2(("AIP上のLLM"))
-        C2 -->|"定義された範囲内でのみ推論"| D2["アクション提案・Proposal"]
-        D2 -->|"人間のレビュー・承認"| E2(("安全な業務の実行・システムへ即時反映"))
+        A2[("Various Data Sources")] -->|"Indexing"| B2{"Ontology: Definition of Nouns and Verbs"}
+        B2 -->|"Provides Permissions and Structured Data"| C2(("LLM on AIP"))
+        C2 -->|"Infers Only Within Defined Scope"| D2["Action Proposal"]
+        D2 -->|"Human Review & Approval"| E2(("Safe Execution of Business / Reflected Immediately in System"))
     end
     style E2 fill:#cfc,stroke:#393,stroke-width:2px
 ```
 
-#### 6-2. AIエージェント（AI FDE）による運用構築コストの消滅
+#### 6-2. The Elimination of Operational Build Costs via AI Agents (AI FDE)
 
-さらにPalantirは、AIを単なる「ユーザーの補助ツール」から、「システムを自ら構築するエンジニア（AI FDE）」へと昇華させました。<br>
+Furthermore, Palantir has elevated AI from a mere "user assistance tool" to an "engineer that builds systems itself (AI FDE)."<br>
 
-これまでのデータ統合基盤構築は、データエンジニアが膨大な時間をかけてデータソースを繋ぎ、マッピングし、パイプラインを構築する泥臭い作業が必要でした。<br>
-しかし、AI-powered forward deployed engineer（対話型エージェント）の登場により、世界は一変します。<br>
-ユーザーが「新規のCRMデータから顧客オントロジーを構築して」と自然言語で要求するだけで、AIがそれをFoundryの操作コマンドへ変換し、データパイプラインの作成やオントロジー保守を自動で代行するのです。<br>
+Previously, building a data integration foundation required data engineers to spend enormous amounts of time connecting data sources, mapping, and constructing pipelines.<br>
+However, with the advent of the AI-powered forward deployed engineer (interactive agent), the world completely changes.<br>
+By simply requesting in natural language, "Build a customer ontology from new CRM data," the AI translates this into Foundry operation commands, automatically acting as an agent to create data pipelines and maintain the ontology.<br>
 
-#### 6-3. 「人間とAIの共進化」を支えるプラットフォーム
+#### 6-3. A Platform Supporting the "Co-evolution of Humans and AI"
 
-AIにシステムを作らせることは危険でしょうか？ いいえ、Palantirのアーキテクチャがそれを防ぎます。<br>
+Is it dangerous to let AI build systems? No, Palantir's architecture prevents this.<br>
 
-AI FDEはユーザーの既存権限を厳格に尊重し、モデルに公開するツール・データを選択させます。<br>
-そして、変更を加える際には必ず「ブランチ提案（Proposal）」を作成し、人間のレビュー用に提示します。<br>
+AI FDE strictly respects the user's existing permissions and lets them choose the tools and data exposed to the model.<br>
+When making changes, it always creates a "Branch Proposal" and presents it for human review.<br>
 
-人間は「データの繋ぎ込み」という退屈な作業から解放され、AIが構築したオントロジーや提案したアクションに対して「それがビジネスの意図に合致しているか」をレビュー・承認する高度な役割へとシフトします。<br>
-オントロジーという共通言語があるからこそ、人間とAIは初めて安全かつ対等に協働し、ビジネスをスケーラブルに進化させることができるのです。<br>
+Humans are freed from the tedious task of "connecting data" and shift to the advanced role of reviewing and approving the ontologies built and actions proposed by AI to ensure they "align with business intent."<br>
+It is precisely because of the common language called ontology that humans and AI can collaborate safely and equally for the first time, evolving the business scalably.<br>
 
 ---
 
-### 終章：オントロジー思考で組織のデータを設計せよ
+### Epilogue: Design Your Organization's Data with Ontology Thinking
 
-私たちは今、「データを見る時代」から「データが意思決定を直接駆動する時代」への決定的な転換点に立っています。<br>
+We are standing at a decisive turning point from the "era of viewing data" to the "era where data directly drives decision-making."<br>
 
-AIがどれほど賢くなっても、企業が持つデータが「サイロ化されたシステムの残骸」である限り、その知性はビジネスの現場には届きません。<br>
-オントロジーを構築することは、単なるITシステムの導入ではありません。<br>
-自社のビジネスを「名詞」と「動詞」で再定義し、人間とAI、そしてシステムが対話するための「組織全体の共通言語」を作ることと同義です。<br>
+No matter how smart AI becomes, as long as a company's data remains "the wreckage of siloed systems," its intelligence will not reach the front lines of business.<br>
+Building an ontology is not merely the introduction of an IT system.<br>
+It is synonymous with redefining your own business with "nouns" and "verbs" and creating a "common language for the entire organization" for humans, AI, and systems to converse.<br>
 
-#### 実装に向けた段階的カリキュラム（アクションプラン）
+#### Step-by-Step Curriculum for Implementation (Action Plan)
 
-オントロジー駆動型アーキテクチャの構築は、壮大に見えても一歩ずつ確実に進めることができます。<br>
-公式資料に基づく学習・実装ロードマップとして、以下の段階的アプローチを推奨します。<br>
+Building an ontology-driven architecture may seem grand, but it can be steadily advanced step by step.<br>
+Based on official documentation, we recommend the following step-by-step approach as a learning and implementation roadmap.<br>
 
 ```mermaid
 flowchart LR
-    Start(("サイロ化された<br>過去のIT資産")) --> S1
+    Start(("Siloed Legacy<br>IT Assets")) --> S1
     
-    subgraph Roadmap ["オントロジー実装STEP"]
+    subgraph Roadmap ["Ontology Implementation STEP"]
         direction LR
-        S1["1. 基盤構造と<br>権限の理解"] --> S2["2. ミニマム・<br>モデリング"]
-        S2 --> S3["3. データ<br>インデックス化"]
-        S3 --> S4["4. 監査と<br>ガバナンス設計"]
-        S4 --> S5["5. AI/アプリ<br>への統合"]
+        S1["1. Understand<br>Structure & Permissions"] --> S2["2. Minimum<br>Modeling"]
+        S2 --> S3["3. Data<br>Indexing"]
+        S3 --> S4["4. Design Audit<br>& Governance"]
+        S4 --> S5["5. Integrate with<br>AI & Apps"]
     end
     
-    S5 --> Goal(("ビジネスを駆動する<br>生きたエンジン"))
+    S5 --> Goal(("Living Engine<br>Driving the Business"))
 
     style Start fill:#eee,stroke:#999
     style Goal fill:#bfdbfe,stroke:#2563eb,stroke-width:4px
@@ -423,33 +423,33 @@ flowchart LR
     style S5 fill:#fff,stroke:#666
 ```
 
-1. **基盤構造と権限モデルの理解（Month 1）** まずは、OMS / OSS / Funnel / Actions / Object databasesといったバックエンドコンポーネントの役割を理解します。同時に、RVs（制限付きビュー）やontology rolesといったPalantir独自の権限モデルを学び、ガバナンスの基礎を固めます。
+1. **Understand Infrastructure and Permission Models (Month 1)** First, understand the roles of backend components such as OMS / OSS / Funnel / Actions / Object databases. Simultaneously, learn Palantir's unique permission models like RVs (Restricted Views) and ontology roles to solidify the foundation of governance.
   
-2. **ミニマム・モデリングとブランチ運用（Month 2）** 特定の小さなドメイン（例：単一の製品ラインの在庫管理など）で、Object / Link / Actionを実際に設計します。ここでは、アクションの提出基準や副作用を含めて定義し、Proposal（提案）を作成してレビュー・承認するプロセスを体感することが重要です。
+2. **Minimum Modeling and Branch Operations (Month 2)** Actually design Objects / Links / Actions in a specific, small domain (e.g., inventory management for a single product line). Here, it is crucial to experience the process of defining submission criteria and side effects for actions, creating a Proposal, and reviewing/approving it.
   
-3. **データパイプラインの実証（Month 3）** データソースからFunnelを経由し、OSv2へとインデックス化され、検索や集約が可能になるデータフローを構築します。バッチ処理とストリーミング処理の違いや、それぞれの物理的制限を踏まえた上で、実運用に耐えうるデータの鮮度と安定性を検証します。
+3. **Validating Data Pipelines (Month 3)** Build a data flow where data from sources is indexed via Funnel into OSv2, making it searchable and aggregatable. After understanding the differences between batch and streaming processing and their respective physical limitations, validate the freshness and stability of data to ensure it can withstand actual operations.
   
-4. **監査とガバナンスのルールの設計（Month 4）** Actionによる更新、アクションログの生成、そして実体化（永続化）への運用ルールを設計します。アクションログ機能を有効化し、誰が編集した内容がどのように本番データへ反映・追跡されるか、自社のコンプライアンス要件と照らし合わせます。
+4. **Designing Audit and Governance Rules (Month 4)** Design operational rules for Action-driven updates, action log generation, and materialization (persistence). Enable the Action Log feature and check how edits made by whom are reflected and tracked in the production data, aligning with your company's compliance requirements.
   
-5. **AIおよび外部アプリケーションへの統合（Month 5〜）** 完成したオントロジーを、外部システムやAIP、カスタムアプリケーションから安全に読み書き可能な状態にします。Developer ConsoleでOSDK（Ontology SDK）を生成し、適切なトークン制御の下で、実際のビジネスアプリからオントロジーを駆動させます。
+5. **Integration with AI and External Applications (Month 5+)** Make the completed ontology safely readable and writable from external systems, AIP, and custom applications. Generate the OSDK (Ontology SDK) in the Developer Console and drive the ontology from actual business apps under appropriate token control.
   
 
-データは、それを活用する人々の意思と繋がり、現実のアクションへと変換されたとき、初めて社会に「衝撃（インパクト）」をもたらします。<br>
-分析結果を眺めるだけの過去のIT資産から脱却し、オントロジーという新たな羅針盤を手に、あなたの組織のデータを「死んだ記録」から「ビジネスを駆動する生きたエンジン」へと変革してください。<br>
+Data only brings "Impact" to society when it connects with the intent of the people utilizing it and is transformed into real-world action.<br>
+Break away from legacy IT assets that only let you stare at analysis results. With the ontology as your new compass, transform your organization's data from a "dead record" into a "living engine driving the business."<br>
 
 ---
 
-## 参考文献・引用元一覧 (References) - 日本語版
+## References - Japanese Version
 
-本書の執筆にあたり、以下の学術的定義、公式技術仕様、および公開実績を参照しています。
+The following academic definitions, official technical specifications, and published case studies were referenced in the writing of this book.
 
-### 1. 学術論文（オントロジーの定義）
+### 1. Academic Papers (Definition of Ontology)
 - **Gruber, T. R. (1993). "A translation approach to portable ontology specifications."**<>
   - URL: https://link.springer.com/article/10.1007/BF00993851
 - **Studer, R., Benjamins, V. R., & Fensel, D. (1998). "Knowledge engineering: Principles and methods."**
   - URL: [https://doi.org/10.1016/S0169-023X(97)00039-6](https://www.google.com/search?q=https://doi.org/10.1016/S0169-023X(97)00039-6)
 
-### 2. Palantir 公式ドキュメント・製品仕様
+### 2. Palantir Official Documentation and Product Specifications
 - **Palantir Foundry: Ontology Overview**
   - URL: [Overview • Ontology • Palantir](https://www.palantir.com/docs/foundry/ontology/overview/)
 - **AIP (Artificial Intelligence Platform) Official Page**
@@ -457,7 +457,7 @@ flowchart LR
 - **Foundry Governance & Security Concepts**
   - URL: [https://www.palantir.com/docs/foundry/administration/security-concepts/](https://www.google.com/search?q=https://www.palantir.com/docs/foundry/administration/security-concepts/)
 
-### 3. 公開事例・プレスリリース
+### 3. Published Case Studies and Press Releases
 - **Airbus: Accelerating production with Palantir Foundry**
   - URL: [Impact | Airbus and Skywise](https://www.palantir.com/impact/airbus/)
 - **SOMPO × Palantir: Real Data Platform (RDP) Case Study**
