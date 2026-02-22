@@ -485,3 +485,33 @@ flowchart LR
 Data only brings "Impact" to society when it connects with the intent of the people utilizing it and is transformed into real-world action.
 
 Break away from legacy IT assets that only let you stare at analysis results. With the ontology as your new compass, transform your organization's data from a "dead record" into a "living engine driving the business."
+
+---
+
+## References - English Version
+
+The following sources were referenced to define technological concepts, verify architectural specifications, and document real-world impacts.
+
+### 1. Academic Papers
+- **Gruber, T. R. (1993). "A translation approach to portable ontology specifications."**
+  - URL: [Partisanship and the vote in Australia: Changes over time 1967–1990 | Political Behavior | Springer Nature Link](https://link.springer.com/article/10.1007/BF00993851)
+- **Studer, R., Benjamins, V. R., & Fensel, D. (1998). "Knowledge engineering: Principles and methods."**
+  - URL: [https://doi.org/10.1016/S0169-023X(97)00039-6](https://www.google.com/search?q=https://doi.org/10.1016/S0169-023X(97)00039-6)
+
+### 2. Palantir Official Resources
+- **Palantir Foundry: Ontology Documentation**
+  - URL: [Overview • Ontology • Palantir](https://www.palantir.com/docs/foundry/ontology/overview/)
+- **Palantir AIP: Security and Operations**
+  - URL: [Palantir Artificial Intelligence Platform](https://www.palantir.com/platforms/aip/)
+- **Foundry Architecture & Microservices Guide**
+  - URL: [https://www.palantir.com/docs/foundry/architecture/overview/](https://www.google.com/search?q=https://www.palantir.com/docs/foundry/architecture/overview/)
+
+### 3. Case Studies and Impact Reports
+- **Airbus: Skywise and A350 Production Acceleration**
+  - URL: [Impact | Airbus and Skywise](https://www.palantir.com/impact/airbus/)
+- **SOMPO Holdings: Digital Transformation in Nursing Care and Insurance**
+  - URL: [https://www.palantir.com/impact/sompo-holdings/](https://www.google.com/search?q=https://www.palantir.com/impact/sompo-holdings/)
+- **Fujitsu & Palantir Partnership Expansion (Global Press Release)**  
+  - URL: [https://www.fujitsu.com/global/about/resources/news/press-releases/2023/1212-01.html](https://www.google.com/search?q=https://www.fujitsu.com/global/about/resources/news/press-releases/2023/1212-01.html)
+
+---
