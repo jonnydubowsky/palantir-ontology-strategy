@@ -60,6 +60,17 @@ This project is part of the research by Leading.AI.<br>
 
 ---
 
+Related Projects
+
+本書は、以下のオープンソースプロジェクトと連携しています。
+
+- **[The Silence of Intelligence](https://github.com/Leading-AI-IO/the-silence-of-intelligence)** —
+  Anthropic CEO ダリオ・アモディの思想を体系化したOSS書籍。Scaling Lawsの本質と、AIが人類にもたらす未来を解き明かします。
+- **[Depth & Velocity](https://github.com/Leading-AI-IO/depth-and-velocity)** —
+  生成AI時代の新規事業開発方法論。従来の「広く浅い」アプローチに代わる、深さと速度を両立する実践フレームワーク。
+
+---
+
 ## Contribution
 Issues and Pull Requests are welcome.
 If you find any typos or have updated information about Palantir's architecture or Ontology, please feel free to contribute.
