@@ -1,7 +1,7 @@
 # パランティアの衝撃：データとAIを繋ぐ「オントロジー」戦略 🌐
 **The Palantir Impact: Ontology Strategy Connecting Data and AI**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Language](https://img.shields.io/badge/Language-English%20%7C%20Japanese-blue)](docs/)
 
 *Read this in other languages: [English](README_en.md)*
@@ -51,20 +51,24 @@
 
 ## Author & Maintainer
 **Satoshi Yamauchi** (山内 怜史)<br>
-*(Business Desiger & AI Strategist at Sun*)*<br>
+*(Business Designer & AI Strategist at Sun\*)*<br>
 **[📒 Read my insights on Note](https://note.com/satoshi_yamauchi).**<br>
 *(Founder / AI Strategist at Leading.AI)*<br>
 This project is part of the research by Leading.AI.<br>
-**[🌐 Visit Leading.AI Official Website](https://www.leading-ai.io/)**<by>
-*(For consulting inquiries and strategic partnership)*<by>
+**[🌐 Visit Leading.AI Official Website](https://www.leading-ai.io/)**<br>
+*(For consulting inquiries and strategic partnership)*<br>
 
 ---
 
 ## Contribution
 Issues and Pull Requests are welcome.
-If you find any typos or have updated information about Scaling Laws, please feel free to contribute.
+If you find any typos or have updated information about Palantir's architecture or Ontology, please feel free to contribute.
 
-誤字脱字の修正や、最新の論文情報の提供など、エンジニアの皆様からのPull Requestを歓迎します。
+誤字脱字の修正や、Palantirのアーキテクチャやオントロジーに関する最新情報の提供など、エンジニアの皆様からのPull Requestを歓迎します。
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/) - see the [LICENSE](LICENSE) file for details.
+
+---
+
+© 2026 Satoshi Yamauchi / Leading AI — Licensed under CC BY 4.0
